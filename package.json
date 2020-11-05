@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "blueimp-md5": "^2.18.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1"
@@ -16,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/Ashlyn708/marvelcomic4125.git"
   },
-  "author": "Ashlyn",
+  "author": "Ashlyn,ShawnTaylor",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Ashlyn708/marvelcomic4125/issues"
