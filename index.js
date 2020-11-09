@@ -31,29 +31,50 @@ app.get('/', function(req,res){
 });
 
 
-//fetches comic api data and send it to frontend of /comic
-app.get('/comic', function(req,res){
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-        res.render('index', {data: data});
-        console.log(data);
-    });
+//get home page /
+app.get('/', function(req, res){
+    res.render('index')
+    console.log("got it");
+    
 });
 
-/*fetches random comic api data and send it to frontend of /rancComic
-app.get('/ranComic', function(req,res){
-    var ranNumber = Math.floor(Math.random() * 2373) + 1;
-    fetch('http://xkcd.com/'+ranNumber+'/info.0.json')
-    .then(res => res.json())
-    .then(randomData => {
-        res.render('ranComic', {randomData: randomData});
-    });
+app.get('/character', function(req, res){
+    res.render('character')
+    console.log("got it");
+    
 });
-*/
 
+app.get('/date', function(req, res){
+    res.render('date')
+    console.log("got it");
+    
+});
 
-//Server setup
-app.listen(port,function(){
+app.get('/random', function(req, res){
+   // let randNum=Math.floor((Math.random() * 2373) + 1);
+    //fetch('https://xkcd.com/'+randNum+'/info.0.json')
+    //.then(res => res.json())
+    //.then(data => {
+        res.render('random',{data:data})
+    //});
+})
+
+app.get('/contact', function(req, res){
+    res.render('contact')
+    console.log("got it");
+    
+});
+
+//app.post('/newRand', function(req, res){
+  //  let randNum=Math.floor((Math.random() * 2373) + 1);
+    //fetch('https://xkcd.com/'+randNum+'/info.0.json')
+    //.then(res => res.json())
+    //.then(data => {
+      //  res.render('random',{data:data})
+    //});
+//})
+
+//server setup
+app.listen(port, function(){
     console.log('Listening on ' + port)
 });
