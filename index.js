@@ -9,10 +9,15 @@ var ts = new Date().getTime();
 var stringToHash  = ts+pvtkey+pubkey;
 var hash = md5(stringToHash);
 
-// url for characters
-var baseUrl = 'https://gateway.marvel.com:443/v1/public/characters';
+// url for characters search
+var charUrl = 'https://gateway.marvel.com:443/v1/public/characters';
 var limit = 20;
-var url = baseUrl + '?limit=' + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash;
+var url = charUrl + '?limit=' + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash;
+
+// url for comic/date search
+var comicUrl = 'https://gateway.marvel.com:443/v1/public/comics';
+var limit = 20;
+var url = comicUrl + '?limit=' + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash;
 
 //Port information
 const port = process.env.PORT || 3000;
@@ -22,14 +27,6 @@ const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 //make styles public
 app.use(express.static("public"));
-
-app.get('/', function(req,res){
-//return something to homepage
-    res.render('index');
-    //return res.redirect('/comic');
-
-});
-
 
 //get home page /
 app.get('/', function(req, res){
@@ -44,10 +41,13 @@ app.get('/character', function(req, res){
     
 });
 
-app.get('/date', function(req, res){
-    res.render('date')
-    console.log("got it");
-    
+app.get('/date', function(req,res){
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {	
+        res.render('date', {data: data});	
+        console.log(data);	
+    });	
 });
 
 app.get('/random', function(req, res){
@@ -55,9 +55,10 @@ app.get('/random', function(req, res){
     //fetch('https://xkcd.com/'+randNum+'/info.0.json')
     //.then(res => res.json())
     //.then(data => {
-        res.render('random',{data:data})
+        res.render('random')
+        console.log("got it");
     //});
-})
+});
 
 app.get('/contact', function(req, res){
     res.render('contact')
