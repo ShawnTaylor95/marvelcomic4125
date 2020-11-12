@@ -11,15 +11,12 @@
     <title>Marvel Comics</title>
   </head>
   <body>
-    <header>
-    <h1>Marvel comics</h1>
-    </header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="/character">Character</a>
@@ -30,6 +27,23 @@
   </div>
 </nav>
 
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    <h1 class="display-4">Marvel Comics</h1>
+    </div>
+</div>
+
+<div id="comicSearch">
+<h2> Search for comic </h2>
+        <form action ="/findDate" method="POST">
+            <input type="date" name="startDate" placeholder="start date">
+            <input type="date" name="endDate" placeholder="end date">
+            <button formaction="/findComics" type="submit"> Submit </button>   
+</div>
+    <h2> Comics </h2>
+<div id="comicResults">
+</p>Num: <b><%= data.results %></b>. </p>
+</div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
