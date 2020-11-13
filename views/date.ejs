@@ -34,15 +34,18 @@
 </div>
 
 <div id="comicSearch">
-<h2> Search for comic </h2>
+    <h2> Search for comic </h2>
         <form action ="/findDate" method="POST">
-            <input type="date" name="startDate" placeholder="start date">
+            <h6>Start Date</h6>
+            <input type="date" name="startDate" placeholder="start date"><br>
+            <h6>End Date</h6>
             <input type="date" name="endDate" placeholder="end date">
-            <button formaction="/findComics" type="submit"> Submit </button>   
+            <button> Submit </button>
+            <!--<button formaction="/findComics" type="submit"> Submit </button>-->   
 </div>
     <h2> Comics </h2>
 <div id="comicResults">
-</p>Num: <b><%= data.results %></b>. </p>
+<!--</p>Num: <b><%= data.results %></b>. </p> -->
 </div>
     <!-- Optional JavaScript; choose one of the two! -->
 

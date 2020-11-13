@@ -10,14 +10,14 @@ var stringToHash  = ts+pvtkey+pubkey;
 var hash = md5(stringToHash);
 
 // url for characters search
-var charUrl = 'https://gateway.marvel.com:443/v1/public/characters';
-var limit = 20;
-var charUrl2 = charUrl + '?limit=' + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash;
+//var charUrl = 'https://gateway.marvel.com:443/v1/public/characters';
+//var limit = 20;
+//var charUrl2 = charUrl + '?limit=' + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash;
 
 // url for comic/date search
-var comicUrl = 'https://gateway.marvel.com:443/v1/public/comics';
+//var comicUrl = 'https://gateway.marvel.com:443/v1/public/comics';
 var limit = 1;
-var comUrl = comicUrl + '?limit=' + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash;
+//var comUrl = comicUrl + '?limit=' + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash;
 //https://gateway.marvel.com:443/v1/public/comics?dateRange=2020-01-10%2C2020-05-10&limit=5&apikey=94527016ce8d780d5741835efed6c566
 
 //Port information
@@ -49,33 +49,33 @@ app.get('/date', function(req,res){
     .then(res => res.json())
     .then(data => {	
         res.render('date', {data: data});	
+        //console.log(data);	
+    });	
+});
+
+app.post('/findDate', function(req,res){
+    var start = req.body.startDate;
+    var end = req.body.endDate;
+    fetch('https://gateway.marvel.com:443/v1/public/comics?dateRange='+ start + '%2c'+ end+ '&limit'
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
+    .then(res => res.json())
+    .then(data => {	
+       res.render('date', {data: data});	
         console.log(data);	
     });	
 });
 
-//app.post('/findComics', function(req,res){
-   // var start = req.body.startDate;
-    //var end = req.body.endDate;
-    //fetch('https://gateway.marvel.com:443/v1/public/comics?dateRange='+ start + '%2c'+ end+ '&limit'
-      //+ limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
-    //.then(res => res.json())
-    //.then(data => {	
-      //  res.render('date', {data: data});	
-        //console.log(data);	
-   // });	
-//});
 
 
-
-app.get('/random', function(req, res){
-   let randNum=Math.floor((Math.random() * 2373) + 1);
-    fetch('https://xkcd.com/'+randNum+'/info.0.json')
+//app.get('/random', function(req, res){
+   //let randNum=Math.floor((Math.random() * 2373) + 1);
+    //fetch('https://xkcd.com/'+randNum+'/info.0.json')
     //.then(res => res.json())
     //.then(data => {
-        res.render('random')
-        console.log("got it");
+        //res.render('random')
+        //console.log("got it");
     //});
-});
+//});
 
 app.get('/contact', function(req, res){
     res.render('contact')
