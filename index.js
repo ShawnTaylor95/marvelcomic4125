@@ -49,7 +49,7 @@ app.get('/date', function(req,res){
     .then(res => res.json())
     .then(data => {	
         res.render('date', {data: data});	
-        //console.log(data);	
+        console.log(data);	
     });	
 });
 
