@@ -6,6 +6,12 @@ var bodyParser = require("body-parser");
 var fetch = require('node-fetch');
 //create express object, call express
 var app = express();
+//creat marvel object,
+var api = require('marvel')
+
+
+
+
 //get port information
 const port = process.env.PORT || 3000;
 
@@ -15,8 +21,9 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 //tell app to use Body parser
 app.use(bodyParser.urlencoded({extended: true}));
-
-
+// use marvel public and private key
+var marvel = new api({ publicKey: "e1e8485e01f4cb3811178c89ef33f8c6", 
+privateKey: "110a77fc5084cb96dc850208d085e60b7f3a4740"})
 
 //get home page /
 app.get('/', function(req, res){
@@ -27,6 +34,13 @@ app.get('/', function(req, res){
 
 app.get('/character', function(req, res){
     res.render('character')
+    marvel.characters
+    .name("Hulk")
+    .get(function(err, resp) {
+        if (err) { console.log("Error: ", err) }
+        else { console.log(resp)
+        data =>{resp} }
+    })
     console.log("got it");
     
 });
