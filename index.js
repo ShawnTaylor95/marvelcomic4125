@@ -1,6 +1,7 @@
 var express = require('express');
 var fetch = require('node-fetch');
 var app = express();
+var bodyParser= require('body-parser');
 var md5   = require("blueimp-md5");
 
 var pubkey = '94527016ce8d780d5741835efed6c566';
@@ -16,7 +17,7 @@ var hash = md5(stringToHash);
 
 // url for comic/date search
 //var comicUrl = 'https://gateway.marvel.com:443/v1/public/comics';
-var limit = 1;
+var limit = 5;
 //var comUrl = comicUrl + '?limit=' + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash;
 //https://gateway.marvel.com:443/v1/public/comics?dateRange=2020-01-10%2C2020-05-10&limit=5&apikey=94527016ce8d780d5741835efed6c566
 
@@ -28,12 +29,11 @@ const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 //make styles public
 app.use(express.static("public"));
-
+app.use(bodyParser.urlencoded({extended: true}));
 //get home page /
 app.get('/', function(req, res){
     res.render('index')
     console.log("got it");
-    
 });
 
 app.get('/character', function(req, res){
@@ -49,14 +49,14 @@ app.get('/date', function(req,res){
     .then(res => res.json())
     .then(data => {	
         res.render('date', {data: data});	
-        console.log(data);	
+        //console.log(data);	
     });	
 });
 
 app.post('/findDate', function(req,res){
     var start = req.body.startDate;
     var end = req.body.endDate;
-    fetch('https://gateway.marvel.com:443/v1/public/comics?dateRange='+ start + '%2c'+ end+ '&limit'
+    fetch('https://gateway.marvel.com:443/v1/public/comics?dateRange='+ start + '%2c'+ end+ '&limit='
       + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
     .then(res => res.json())
     .then(data => {	
