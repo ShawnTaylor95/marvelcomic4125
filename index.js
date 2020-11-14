@@ -21,6 +21,4 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 //server setup
-app.listen(port, function(){
-    console.log('Listening on ' + port)
-});
+app.listen(port, function(){});
