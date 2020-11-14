@@ -1,45 +1,54 @@
 body {
-background-color: #A26F3F;
-background-image: url("marvelback.jpeg");
+background-color: rgb(3, 3, 3);
+background-image: url("mback2.jpg");
 background-repeat: no-repeat;
-color: black;
+color: white;
 background-position: center;
 background-attachment: fixed; 
 background-size: cover;
 text-align: center;
-Font-family: "Comic Sans MS", cursive, sans-serif;
+Font-family: "Times New Roman", Times, serif;
 font-weight: bold;
 font-size: 20px;
 padding:5%;
 
 }
+#wrapper{
+    background-color: black; 
+	margin-left: auto; 
+	margin-right: auto;
+	width: 40%; 
+	min-width: 900px; 
+	max-width: 1280px; 
+	box-shadow: 10px,10px,10px,white;
+}
 
 h1 {
-Font-family: "Comic Sans MS", cursive, sans-serif;
+Font-family: "Times New Roman", Times, serif;
 font-weight: bold;
 font-size:60px;
 text-align: center;
 padding:5%;
 padding-bottom:0%;
-text-shadow: 2px 2px #ffffff;
+text-shadow: 2px 2px grey;
 
 }
 
 h2 {
 text-align: center;
-Font-family: "Comic Sans MS", cursive, sans-serif;
+Font-family: "Times New Roman", Times, serif;
 font-weight: bold;
 font-size: 45px;
 padding:5%;
-text-shadow: 2px 2px #ffffff
+
 }
 h3{
-    ext-align: center;
-Font-family: "Comic Sans MS", cursive, sans-serif;
+    text-align: center;
+Font-family: "Times New Roman", Times, seriff;
 font-weight: bold;
 font-size: 30px;
 padding:5%;
-text-shadow: 2px 2px #ffffff
+
 }
 
 nav{
@@ -62,6 +71,8 @@ nav a:link{color: white;}
 nav a:visited{color: white;}
 nav a:hover{color:grey;}
 nav a:active{color:#ebae3d;}
+
+
    
    
 
