@@ -16,7 +16,10 @@ app.use(express.static("public"));
 //tell app to use Body parser
 app.use(bodyParser.urlencoded({extended: true}));
 
-
+app.get('/', function(req,res){
+    res.render('index')
+    console.log("got it")
+});
 
 
 
