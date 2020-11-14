@@ -15,6 +15,17 @@ app.set('view engine', 'ejs');
 app.use(express.static("public"));
 //tell app to use Body parser
 app.use(bodyParser.urlencoded({extended: true}));
+var md5   = require("blueimp-md5");
+
+var pubkey = '94527016ce8d780d5741835efed6c566';
+var pvtkey = 'b0d94bb240304ac1daea677d8eefc358a55cb82f';
+var ts = new Date().getTime();
+var stringToHash  = ts+pvtkey+pubkey;
+var hash = md5(stringToHash);
+
+var ts = new Date().getTime();
+var charLimit=5;
+var data;
 
 app.get('/', function(req, res){
     res.render('index')
@@ -28,22 +39,41 @@ app.get('/character', function(req, res){
 });
 
 app.post('/getCharacter',function(req,res){
-let data = marvel.characters
-    .name("Hulk")
-    .get(function(err, resp) {
-        if (err) { console.log("Error: ", err) }
-        else { console.log(resp)}
-    });
-    res.render('character',{data:data});
+    var name;
+ name=req.body.heroName;
+fetch('https://gateway.marvel.com:443/v1/public/characters?name='+ name+ '&limit='
+      + charLimit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
+    .then(res => res.json())
+    .then(data => {	
+        res.results
+       res.render('character', {data: data});	
+        console.log(data);}
+)});
 
+    
+
+var limit = 5;
+//get results to stop saying [object] and allow user to plug in date
+app.get('/date', function(req,res){
+    fetch('https://gateway.marvel.com:443/v1/public/comics?dateRange=2020-01-10%2C2020-05-10&limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
+    .then(res => res.json())
+    .then(data => {	
+        res.render('date', {data: data});	
+        //console.log(data);	
+    });	
 });
-    
 
-
-app.get('/date', function(req, res){
-    res.render('date')
-    console.log("got it");
-    
+app.post('/findDate', function(req,res){
+    var start = req.body.startDate;
+    var end = req.body.endDate;
+    fetch('https://gateway.marvel.com:443/v1/public/comics?dateRange='+ start + '%2c'+ end+ '&limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
+    .then(res => res.json())
+    .then(data => {	
+       res.render('date', {data: data});	
+        console.log(data);	
+    });	
 });
 
 app.get('/random', function(req, res){
