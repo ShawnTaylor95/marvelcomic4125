@@ -1,0 +1,71 @@
+body {
+background-color: #A26F3F;
+background-image: url("marvelback.jpeg");
+background-repeat: no-repeat;
+color: black;
+background-position: center;
+background-attachment: fixed; 
+background-size: cover;
+text-align: center;
+Font-family: "Comic Sans MS", cursive, sans-serif;
+font-weight: bold;
+font-size: 20px;
+padding:5%;
+
+}
+
+h1 {
+Font-family: "Comic Sans MS", cursive, sans-serif;
+font-weight: bold;
+font-size:60px;
+text-align: center;
+padding:5%;
+padding-bottom:0%;
+text-shadow: 2px 2px #ffffff;
+
+}
+
+h2 {
+text-align: center;
+Font-family: "Comic Sans MS", cursive, sans-serif;
+font-weight: bold;
+font-size: 45px;
+padding:5%;
+text-shadow: 2px 2px #ffffff
+}
+h3{
+    ext-align: center;
+Font-family: "Comic Sans MS", cursive, sans-serif;
+font-weight: bold;
+font-size: 30px;
+padding:5%;
+text-shadow: 2px 2px #ffffff
+}
+
+nav{
+	float: left;
+	text-align: center; 
+	width:100%; 
+	font-weight:bold; 
+	font-size: 30px; 
+	background-color: black;
+	width:100%;
+	min-width: 900px; 
+	max-width: 2000px; 
+}
+nav ul{
+	display: inline;
+	padding-left: 8em;
+    }
+
+nav a:link{color: white;}
+nav a:visited{color: white;}
+nav a:hover{color:grey;}
+nav a:active{color:#ebae3d;}
+   
+   
+
+
+    
+
+
