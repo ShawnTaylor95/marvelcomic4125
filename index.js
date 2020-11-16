@@ -84,11 +84,17 @@ app.get('/contact', function(req, res){
     //fetch('https://xkcd.com/'+randNum+'/info.0.json')
     //.then(res => res.json())
     //.then(data => {
-      //  res.render('random',{data:data})
+        res.render('random')
+        console.log("got it");
+
     //});
-//})
+
+app.get('/contact', function(req, res){
+    res.render('contact')
+    console.log("got it");
+    
+});
+
 
 //server setup
-app.listen(port, function(){
-    console.log('Listening on ' + port)
-});
+app.listen(port, function(){});
