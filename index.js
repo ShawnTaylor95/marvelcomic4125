@@ -17,7 +17,7 @@ var hash = md5(stringToHash);
 
 // url for comic/date search
 //var comicUrl = 'https://gateway.marvel.com:443/v1/public/comics';
-var limit = 2;
+var limit = 5;
 //var comUrl = comicUrl + '?limit=' + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash;
 //https://gateway.marvel.com:443/v1/public/comics?dateRange=2020-01-10%2C2020-05-10&limit=5&apikey=94527016ce8d780d5741835efed6c566
 
@@ -84,11 +84,17 @@ app.get('/contact', function(req, res){
     //fetch('https://xkcd.com/'+randNum+'/info.0.json')
     //.then(res => res.json())
     //.then(data => {
-      //  res.render('random',{data:data})
+        res.render('random')
+        console.log("got it");
+
     //});
-//})
+
+app.get('/contact', function(req, res){
+    res.render('contact')
+    console.log("got it");
+    
+});
+
 
 //server setup
-app.listen(port, function(){
-    console.log('Listening on ' + port)
-});
+app.listen(port, function(){});
