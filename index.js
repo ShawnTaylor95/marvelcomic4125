@@ -42,13 +42,13 @@ app.get('/character', function(req, res){
     
 });
 
-//get results to stop saying [object] and allow user to plug in date
+
 app.get('/date', function(req,res){
     fetch('https://gateway.marvel.com:443/v1/public/comics?dateRange=2020-01-10%2C2020-05-10&limit='
       + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
     .then(res => res.json())
-    .then(data => {	
-        res.render('date', {data: data});	
+    .then(comic => {	
+        res.render('date', {comic: comic});	
         //console.log(data);	
     });	
 });
@@ -59,9 +59,9 @@ app.post('/findDate', function(req,res){
     fetch('https://gateway.marvel.com:443/v1/public/comics?dateRange='+ start + '%2c'+ end+ '&limit='
       + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
     .then(res => res.json())
-    .then(data => {	
-       res.render('date', {data: data});	
-        console.log(data.data.results);	
+    .then(comic => {	
+       res.render('date', {comic: comic});	
+        console.log(comic.data.results);	
     });	
 });
 
