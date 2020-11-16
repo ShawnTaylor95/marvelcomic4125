@@ -84,8 +84,8 @@ app.get('/contact', function(req, res){
     //fetch('https://xkcd.com/'+randNum+'/info.0.json')
     //.then(res => res.json())
     //.then(data => {
-        res.render('random')
-        console.log("got it");
+       // res.render('random')
+        //console.log("got it");
 
     //});
 

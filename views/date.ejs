@@ -52,10 +52,10 @@
 <div id="comicResults">
     <h2> Comics </h2>
      <% for(var i=0;i<comic.data.results.length;i++) { %>
-         <img src="<%=(comic.data.results[i].thumbnail.path)+ '.jpg' %>" alt="Comic">
-		 <p><%=comic.data.results[i].title %></p>  
-         <p>id: <%=comic.data.results[i].id %></p>
-         <% console.log((comic.data.results[i].thumbnail.path)+ '.jpg' ) %>
+            <img src="<%=(comic.data.results[i].thumbnail.path)+ '.jpg' %>" alt="Comic">
+            <p><%=comic.data.results[i].description %></p>
+            <p><%=comic.data.results[i].title %></p>  
+            <p>ID: <%=comic.data.results[i].id %></p>
      <% } %>
 </div>
 <!-- var comic = -->

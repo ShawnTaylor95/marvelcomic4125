@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A marvel Website",
   "main": "index.js",
-<<<<<<< HEAD
   "dependencies": {
     "blueimp-md5": "^2.18.0",
     "body-parser": "^1.19.0",
@@ -12,15 +11,12 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {},
-=======
->>>>>>> b96da4e90b33c63067a2e087993b7bab9640e63f
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-<<<<<<< HEAD
     "url": "git+https://github.com/ShawnTaylor95/marvelcomic4125.git"
   },
   "author": "ShawnTaylor",
@@ -29,23 +25,4 @@
     "url": "https://github.com/ShawnTaylor95/marvelcomic4125/issues"
   },
   "homepage": "https://github.com/ShawnTaylor95/marvelcomic4125#readme"
-=======
-    "url": "git+https://github.com/Alyssia21/marvelcomic4125.git"
-  },
-  "author": "AlyssiaMahone",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Alyssia21/marvelcomic4125/issues"
-  },
-  "homepage": "https://github.com/Alyssia21/marvelcomic4125#readme",
-  "engines": {
-    "node": "12.x"
-  },
-  "dependencies": {
-    "blueimp-md5": "^2.18.0",
-    "ejs": "^3.1.5",
-    "express": "^4.17.1",
-    "node-fetch": "^2.6.1"
-  }
->>>>>>> b96da4e90b33c63067a2e087993b7bab9640e63f
 }
