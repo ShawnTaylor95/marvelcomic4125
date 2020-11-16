@@ -43,10 +43,13 @@
             <button> Submit </button>
             <!--<button formaction="/findComics" type="submit"> Submit </button>-->   
 </div>
-    <h2> Comics </h2>
+    
+    
 <div id="comicResults">
-     
-      
+    <h2> Comics </h2>
+     <% for(var i=0;i<data.data.results.length;i++) { %>
+		<%= data.data.results[i] %>;
+     <% } %>
 </div>
 <!-- var comic = -->
     <!-- Optional JavaScript; choose one of the two! -->

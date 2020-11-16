@@ -17,7 +17,7 @@ var hash = md5(stringToHash);
 
 // url for comic/date search
 //var comicUrl = 'https://gateway.marvel.com:443/v1/public/comics';
-var limit = 5;
+var limit = 2;
 //var comUrl = comicUrl + '?limit=' + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash;
 //https://gateway.marvel.com:443/v1/public/comics?dateRange=2020-01-10%2C2020-05-10&limit=5&apikey=94527016ce8d780d5741835efed6c566
 
@@ -61,7 +61,7 @@ app.post('/findDate', function(req,res){
     .then(res => res.json())
     .then(data => {	
        res.render('date', {data: data});	
-        console.log(data);	
+        console.log(data.data.results);	
     });	
 });
 
