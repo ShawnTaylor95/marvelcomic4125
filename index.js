@@ -6,8 +6,6 @@ var bodyParser = require("body-parser");
 var fetch = require('node-fetch');
 //create express object, call express
 var app = express();
-//creat marvel object,
-var api = require('marvel')
 //create
 var md5 = require("blueimp-md5")
 //get port information
@@ -37,8 +35,12 @@ app.get('/', function(req, res){
 });
 
 app.get('/character', function(req, res){ 
-    res.render('character')
-    console.log("got it");
+    fetch('https://gateway.marvel.com:443/v1/public/characters?name=Hulk&limit='
+      + charLimit + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash)
+    .then(res => res.json())
+    .then(info=> { 
+         res.render('character', {info:info}) 
+     });  
 });
 
 
@@ -48,10 +50,9 @@ app.post('/getCharacter',function(req,res){
 fetch('https://gateway.marvel.com:443/v1/public/characters?name='+ name+ '&limit='
       + charLimit + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash)
     .then(res => res.json())
-    .then(data => {	
-        res.results
-       res.render('character', {data: data});	
-        console.log(data);}
+    .then(info=> {	
+       res.render('character', {info:info});	
+        console.log(info.data.results);}
 )});
     
 
@@ -69,7 +70,7 @@ app.get('/random', function(req, res){
     //.then(data => {
         res.render('random',{data:data})
     //});
-})
+});
 
 app.get('/contact', function(req, res){
     res.render('contact')
