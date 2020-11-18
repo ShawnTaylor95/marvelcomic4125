@@ -22,7 +22,10 @@ padding:5%;
 	max-width: 1280px; 
 	box-shadow: 10px,10px,10px,white;
 }
-
+.jumbotron{
+    background: black;
+    border-color: #F3D403;
+}
 h1 {
 Font-family: "Times New Roman", Times, serif;
 font-weight: bold;
