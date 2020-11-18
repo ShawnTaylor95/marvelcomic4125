@@ -35,12 +35,49 @@ app.get('/', function(req, res){
 });
 
 app.get('/character', function(req, res){ 
-    fetch('https://gateway.marvel.com:443/v1/public/characters?name=Hulk&limit='
-      + charLimit + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash)
-    .then(res => res.json())
-    .then(info=> { 
-         res.render('character', {info:info}) 
-     });  
+    //fetch('https://gateway.marvel.com:443/v1/public/characters?name=Hulk&limit='
+    //  + charLimit + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash)
+    //.then(res => res.json())
+    //.then(info=> { 
+        // console.log(res) 
+    // }); 
+    var info;
+    var comic;
+    //the link that i got the code from
+//https://gomakethings.com/how-to-use-the-fetch-method-to-make-multiple-api-calls-with-vanilla-javascript/
+// Call the API
+fetch('https://gateway.marvel.com:443/v1/public/characters?name=Hulk&limit='
+     + charLimit + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash).then(function (response) {
+	if (response.ok) {
+		return response.json();
+	} else {
+		return Promise.reject(response);
+	}
+}).then(function (charInfo) {
+
+	// Store the post data to a variable
+    info = charInfo;
+    //var charId = charInfo.data.result[0].id;
+
+	// Fetch another API
+    return fetch('https://gateway.marvel.com:443/v1/public/characters/1009351/comics?format=comic&limit='
+     + charLimit + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash);
+
+}).then(function (response) {
+	if (response.ok) {
+		return response.json();
+	} else {
+		return Promise.reject(response);
+	}
+}).then(function (charComic) {
+    comic=charComic;
+    console.log(info);
+    console.log(comic);
+    //res.render('character',{info:info},{comic:comic})
+}).catch(function (error) {
+	console.warn(error);
+}); 
+//res.render('character',{info:info},{comic:comic})
 });
 
 
