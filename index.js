@@ -19,13 +19,13 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 // use marvel public and private key
 //var marvel = new api({
-var  publicKey= "e1e8485e01f4cb3811178c89ef33f8c6"; 
-var privateKey= "110a77fc5084cb96dc850208d085e60b7f3a4740";
+var  pubkey= "e1e8485e01f4cb3811178c89ef33f8c6"; 
+var pvtkey= "110a77fc5084cb96dc850208d085e60b7f3a4740";
 var ts = new Date().getTime();
-var charLimit=3;
-var stringToHash = ts+privateKey+publicKey;
+var limit=5;
+var stringToHash = ts+pvtkey+pubkey;
 var hash = md5(stringToHash);
-var data;
+//var data;
 
 //get home page /
 app.get('/', function(req, res){
@@ -35,69 +35,102 @@ app.get('/', function(req, res){
 });
 
 app.get('/character', function(req, res){ 
-    //fetch('https://gateway.marvel.com:443/v1/public/characters?name=Hulk&limit='
-    //  + charLimit + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash)
-    //.then(res => res.json())
-    //.then(info=> { 
-        // console.log(res) 
-    // }); 
     var info;
-    var comic;
-    //the link that i got the code from
-//https://gomakethings.com/how-to-use-the-fetch-method-to-make-multiple-api-calls-with-vanilla-javascript/
+
 // Call the API
 fetch('https://gateway.marvel.com:443/v1/public/characters?name=Hulk&limit='
-     + charLimit + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash).then(function (response) {
-	if (response.ok) {
-		return response.json();
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
+.then(function (res) {
+	if (res.ok) {
+		return res.json();
 	} else {
-		return Promise.reject(response);
+		return Promise.reject("no valid data");
 	}
-}).then(function (charInfo) {
+}).then(function (details) {
 
 	// Store the post data to a variable
-    info = charInfo;
-    //var charId = charInfo.data.result[0].id;
+	info = details;
+    charID= details.data.results[0].id;
 
 	// Fetch another API
-    return fetch('https://gateway.marvel.com:443/v1/public/characters/1009351/comics?format=comic&limit='
-     + charLimit + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash);
+	return fetch('https://gateway.marvel.com:443/v1/public/characters/'+charID+'/comics?limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash);
 
-}).then(function (response) {
-	if (response.ok) {
-		return response.json();
+}).then(function (res) {
+	if (res.ok) {
+		return res.json();
 	} else {
-		return Promise.reject(response);
+		return Promise.reject("invalid input");
 	}
-}).then(function (charComic) {
-    comic=charComic;
-    console.log(info);
-    console.log(comic);
-    //res.render('character',{info:info},{comic:comic})
+}).then(function (comic) {
+	console.log(info.data.results, comic.data.results);
+    res.render('character',{info:info,comic:comic})
 }).catch(function (error) {
 	console.warn(error);
-}); 
-//res.render('character',{info:info},{comic:comic})
+});
 });
 
 
 app.post('/getCharacter',function(req,res){
     var name;
  name=req.body.heroName;
-fetch('https://gateway.marvel.com:443/v1/public/characters?name='+ name+ '&limit='
-      + charLimit + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash)
+var info;
+
+// Call the API
+fetch('https://gateway.marvel.com:443/v1/public/characters?name='+name+'&limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
+.then(function (res) {
+	if (res.ok) {
+		return res.json();
+	} else {
+		return Promise.reject("no valid data");
+	}
+}).then(function (details) {
+
+	// Store the post data to a variable
+	info = details;
+    charID= details.data.results[0].id;
+
+	// Fetch another API
+	return fetch('https://gateway.marvel.com:443/v1/public/characters/'+charID+'/comics?limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash);
+
+}).then(function (res) {
+	if (res.ok) {
+		return res.json();
+	} else {
+		return Promise.reject("invalid input");
+	}
+}).then(function (comic) {
+	console.log(info.data.results, comic.data.results);
+    res.render('character',{info:info,comic:comic})
+}).catch(function (error) {
+	console.warn(error);
+});        
+});
+    
+
+
+app.get('/date', function(req,res){
+    fetch('https://gateway.marvel.com:443/v1/public/comics?dateRange=2020-01-10%2C2020-05-10&limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
     .then(res => res.json())
-    .then(info=> {	
-       res.render('character', {info:info});	
-        console.log(info.data.results);}
-)});
-    
+    .then(comic => {	
+        res.render('date', {comic: comic});	
+        //console.log(data);	
+    });	
+});
 
-
-app.get('/date', function(req, res){
-    res.render('date')
-    console.log("got it");
-    
+app.post('/findDate', function(req,res){
+    var start = req.body.startDate;
+    var end = req.body.endDate;
+    fetch('https://gateway.marvel.com:443/v1/public/comics?dateRange='+ start + '%2c'+ end+ '&limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
+    .then(res => res.json())
+    .then(comic => {	
+       res.render('date', {comic: comic});	
+        console.log(comic.data.results);	
+    });	
 });
 
 app.get('/random', function(req, res){
