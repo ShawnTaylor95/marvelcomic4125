@@ -14,7 +14,7 @@ padding:5%;
 
 }
 #wrapper{
-    background-color: black; 
+    background-color: hsla(0, 100%, 0%, .85); 
 	margin-left: auto; 
 	margin-right: auto;
 	width: 40%; 
@@ -22,10 +22,15 @@ padding:5%;
 	max-width: 1280px; 
 	box-shadow: 10px,10px,10px,white;
 }
+
 .jumbotron{
     background: black;
     border-color: #F3D403;
 }
+.carousel-caption{
+    text-align: top center;
+}
+
 h1 {
 Font-family: "Times New Roman", Times, serif;
 font-weight: bold;
@@ -46,12 +51,19 @@ padding:5%;
 
 }
 h3{
-    text-align: center;
+text-align: center;
 Font-family: "Times New Roman", Times, seriff;
 font-weight: bold;
 font-size: 30px;
 padding:5%;
 
+}
+
+#rollimg{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;  
 }
 
 nav{
@@ -61,7 +73,6 @@ nav{
 	font-weight:bold; 
 	font-size: 30px; 
 	background-color: black;
-	width:100%;
 	min-width: 900px; 
 	max-width: 2000px; 
 }
@@ -73,4 +84,6 @@ nav ul{
 nav a:link{color: white;}
 nav a:visited{color: white;}
 nav a:hover{color:grey;}
-nav a:active{color:#ebae3d;
+nav a:active{color:#ebae3d;}
+
+
