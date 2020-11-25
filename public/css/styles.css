@@ -24,7 +24,7 @@ padding:5%;
 }
 
 .jumbotron{
-    background: black;
+    background-color: hsla(0, 100%, 0%, .85);
     border-color: #F3D403;
 }
 .carousel-caption{

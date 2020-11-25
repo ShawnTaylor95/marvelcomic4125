@@ -17,14 +17,14 @@
     <h1>Marvel Comics</h1>
     </header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="/">Marvel</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="/character">Character</a>
+      <a class="nav-item nav-link" href="/">Home </span></a>
+      <a class="nav-item nav-link active" href="/character">Character<span class="sr-only">(current)</a>
       <a class="nav-item nav-link" href="/date">Date</a>
       <a class="nav-item nav-link" href="/random">Random</a>
       <a class="nav-item nav-link" href="/contact">Contact Us</a>
@@ -47,8 +47,8 @@
 <div class="media">
   <img id="pic"src="<%= info.data.results[0].thumbnail.path+'.'+info.data.results[0].thumbnail.extension%>" class="align-self-start mr-3" alt="Hero" width="25%" height="25%">
   <div class="media-body">
-    <h2>Character</h2>
-    <h3><%=info.data.results[0].name%></h3>
+    <h4>Character:</h4>
+    <h4><%=info.data.results[0].name%></h4>
     <p>Description: <%= info.data.results[0].description%></p>
     <p>This character is in <%= info.data.results[0].comics.available%> comics.</p>
     </div>
