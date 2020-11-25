@@ -86,7 +86,8 @@ nav a:visited{color: white;}
 nav a:hover{color:grey;}
 nav a:active{color:#ebae3d;}
 
-#comicResults, img{
+#datedComics{
+    height: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
