@@ -13,18 +13,19 @@
   <body>
   <div id ="wrapper">
     <header>
-    <h1>Marvel comics</h1>
+    <h1>Marvel Comics</h1>
     </header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Marvel</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="/">Home </a>
+      <a class="nav-item nav-link active" href="/">Home </a>
       <a class="nav-item nav-link" href="/character">Character</a>
       <a class="nav-item nav-link active" href="/date">Date<span class="sr-only">(current)</span></a>
-      <!-- <a class="nav-item nav-link" href="/random">Random</a> -->
+      <a class="nav-item nav-link" href="/random">Random</a>
       <a class="nav-item nav-link" href="/contact">Contact Us</a>
     </div>
   </div>
@@ -51,12 +52,20 @@
 <div id="comicResults">
     <h2> Comics </h2>
      <% for(var i=0;i<comic.data.results.length;i++) { %>
-            <img src="<%=(comic.data.results[i].thumbnail.path)+ '.jpg' %>" alt="Comic">
-            <p><%=comic.data.results[i].description %></p>
-            <p><%=comic.data.results[i].title %></p>  
-            <p>ID: <%=comic.data.results[i].id %></p>
-            <p>Date: <%=comic.data.results[i].dates[0].date %></p>
-            <p>Price: <%=comic.data.results[i].prices[0].price %></p>
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <img src="<%=(comic.data.results[i].thumbnail.path)+ '.jpg' %>" alt="Comic">
+                    </div>
+                    <div class="flip-box-back">
+                        <h2><%=comic.data.results[i].title %></h2>
+                        <p><%=comic.data.results[i].description %></p>
+                        <p>ID: <%=comic.data.results[i].id %></p>
+                        <p>Date: <%=comic.data.results[i].dates[0].date %></p>
+                        <p>Price: <%=comic.data.results[i].prices[0].price %></p>
+                    </div>
+                </div>
+            </div>
      <% } %>
 </div>
 <!-- var comic = -->
