@@ -36,11 +36,81 @@ app.get('/', function(req, res){
     console.log("got it");
 });
 
-app.get('/character', function(req, res){
-    res.render('character')
-    console.log("got it");
-    
+app.get('/character', function(req, res){ 
+    var info;
+
+// Call the API
+fetch('https://gateway.marvel.com:443/v1/public/characters?name=Hulk&limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
+.then(function (res) {
+	if (res.ok) {
+		return res.json();
+	} else {
+		return Promise.reject("no valid data");
+	}
+}).then(function (details) {
+
+	// Store the post data to a variable
+	info = details;
+    charID= details.data.results[0].id;
+
+	// Fetch another API
+	return fetch('https://gateway.marvel.com:443/v1/public/characters/'+charID+'/comics?limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash);
+
+}).then(function (res) {
+	if (res.ok) {
+		return res.json();
+	} else {
+		return Promise.reject("invalid input");
+	}
+}).then(function (comic) {
+	console.log(info.data.results, comic.data.results);
+    res.render('character',{info:info,comic:comic})
+}).catch(function (error) {
+	console.warn(error);
 });
+});
+
+
+app.post('/getCharacter',function(req,res){
+    var name;
+ name=req.body.heroName;
+var info;
+
+// Call the API
+fetch('https://gateway.marvel.com:443/v1/public/characters?name='+name+'&limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash)
+.then(function (res) {
+	if (res.ok) {
+		return res.json();
+	} else {
+		return Promise.reject("no valid data");
+	}
+}).then(function (details) {
+
+	// Store the post data to a variable
+	info = details;
+    charID= details.data.results[0].id;
+
+	// Fetch another API
+	return fetch('https://gateway.marvel.com:443/v1/public/characters/'+charID+'/comics?limit='
+      + limit + '&ts=' + ts + '&apikey=' + pubkey + '&hash=' + hash);
+
+}).then(function (res) {
+	if (res.ok) {
+		return res.json();
+	} else {
+		return Promise.reject("invalid input");
+	}
+}).then(function (comic) {
+	console.log(info.data.results, comic.data.results);
+    res.render('character',{info:info,comic:comic})
+}).catch(function (error) {
+	console.warn(error);
+});        
+});
+    
 
 
 app.get('/date', function(req,res){
@@ -79,15 +149,6 @@ app.get('/contact', function(req, res){
     
 });
 
-//app.post('/newRand', function(req, res){
-    //let randNum=Math.floor((Math.random() * 2373) + 1);
-    //fetch('https://xkcd.com/'+randNum+'/info.0.json')
-    //.then(res => res.json())
-    //.then(data => {
-       // res.render('random')
-        //console.log("got it");
-
-    //});
 
 app.get('/contact', function(req, res){
     res.render('contact')
