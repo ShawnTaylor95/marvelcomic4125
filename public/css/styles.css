@@ -72,7 +72,9 @@ nav a:visited{color: white;}
 nav a:hover{color:grey;}
 nav a:active{color:#ebae3d;}
 
-
+#comicResults{
+    display: inline-block;
+}
    
    
 
